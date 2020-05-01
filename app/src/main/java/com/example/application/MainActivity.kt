@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Barykin Alexey, 2020
+ */
+
 package com.example.application
 
 import androidx.appcompat.app.AppCompatActivity
