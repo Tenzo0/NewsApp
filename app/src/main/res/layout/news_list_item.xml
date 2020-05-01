@@ -3,7 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="article"
+            type="com.example.application.domain.DetailedArticle" />
+
+        <variable
+            name="newsItemClickListener"
+            type="com.example.application.news.NewsListAdapter.NewsItemClickListener" />
+
+    </data>
+
     <androidx.cardview.widget.CardView
+        android:onClick="@{() -> newsItemClickListener.onClick(article)}"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
@@ -12,40 +25,52 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_margin">
+            android:layout_marginHorizontal="@dimen/large_margin"
+            android:layout_marginVertical="@dimen/default_margin">
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
                 android:contentDescription="@string/article_image"
-                app:layout_constraintTop_toTopOf="parent"
+                android:paddingEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:src="@drawable/ic_launcher_background"/>
+                app:layout_constraintTop_toTopOf="@+id/title"
+                tools:src="@drawable/ic_launcher_background"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Headline"
                 android:id="@+id/title"
+                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/image"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{article.title}"
+                app:layout_constraintBottom_toTopOf="@+id/description"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+
                 app:layout_constraintStart_toEndOf="@+id/image"
-                app:layout_constraintTop_toTopOf="@+id/image"
-                tools:text="@string/lorem_ipsum"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="@string/lorem_ipsum" />
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:id="@+id/description"
-                android:layout_width="0dp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:maxLines="4"
                 android:ellipsize="end"
+                android:maxLines="4"
+                android:text="@{article.description}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image"
+
+                app:layout_constraintTop_toBottomOf="@+id/title"
                 tools:text="@string/lorem_ipsum" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
